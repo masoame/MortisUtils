@@ -67,13 +67,13 @@ namespace Mortis
 	}
 
 	class SingletonThreadPool : public Singleton<SingletonThreadPool>, public BaseThreadPool
-	{
+		{
 		friend class Singleton<SingletonThreadPool>;
 	protected:
 		using BaseThreadPool::BaseThreadPool;
 	};
 	using STreadPool = SingletonThreadPool;
-	
+
 	namespace Thread
 	{
 		template<typename F, typename... Args>
@@ -90,9 +90,9 @@ namespace Mortis
 			results.reserve(taskCount);
 			for (int i = 0; i != taskCount; ++i) {
 				results.push_back(STreadPool::Instance().enqueue(f, args...));
-			}
+	}
 			return results;
-		}
+}
 
 
 	}
