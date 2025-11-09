@@ -11,7 +11,7 @@ namespace Mortis
 	class BaseThreadPool {
 
 	public:
-		explicit BaseThreadPool(size_t threads = std::thread::hardware_concurrency());
+		explicit BaseThreadPool(std::size_t threads = std::thread::hardware_concurrency());
 		~BaseThreadPool();
 
 		template<class F, class... Args>
@@ -28,14 +28,12 @@ namespace Mortis
 		std::vector< std::jthread > workers{};
 		// the task queue
 		std::queue< std::function<void()>> tasks{};
-
 		// synchronization
 		std::mutex queue_mutex{};
 		std::condition_variable condition{};
 		//bool stop;
 		std::stop_source stop{};
 	};
-
 
 	template<class Task>
 		requires BC::is_packaged_task_v<Task> && (not std::is_reference_v<Task>)
@@ -44,7 +42,6 @@ namespace Mortis
 		auto res = task->get_future();
 		{
 			std::unique_lock lock(queue_mutex);
-
 			if (stop.stop_requested()) {
 				throw std::runtime_error("enqueue on stopped ThreadPool");
 			}
@@ -73,8 +70,8 @@ namespace Mortis
 		using BaseThreadPool::BaseThreadPool;
 	};
 	using STreadPool = SingletonThreadPool;
-	
-	namespace Thread
+
+	namespace Thr
 	{
 		template<typename F, typename... Args>
 			requires std::invocable<F, Args...>
@@ -93,7 +90,5 @@ namespace Mortis
 			}
 			return results;
 		}
-
-
 	}
 };

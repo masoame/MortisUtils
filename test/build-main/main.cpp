@@ -9,14 +9,14 @@ int main()
 		std::cout << "Hello, ThreadPool!" << ++i <<  std::endl;
 	};
 
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
-	Mo::Thread::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
+	Mo::Thr::Async(task).wait();
 	//std::this_thread::sleep_for(std::chrono::seconds(2));
 }

@@ -1,6 +1,9 @@
-set(ENV{http_proxy} "http://127.0.0.1:10808")
-set(ENV{https_proxy} "http://127.0.0.1:10808")
-
+if(WIN32)
+    set(ENV{http_proxy} "http://127.0.0.1:10808")
+    set(ENV{https_proxy} "http://127.0.0.1:10808")
+    message(STATUS "Set proxy for Windows build")
+endif()
+    message(STATUS "Fetching third-party packages...")
 include(FetchContent)
 
 FetchContent_Declare(
