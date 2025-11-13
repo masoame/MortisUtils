@@ -1,10 +1,5 @@
 project(MoUtils LANGUAGES CXX)
 
-
-set(IncludePaths
-
-)
-
 file(GLOB UtilsSourceFiles
     CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/ExportHeader/utils.cpp
