@@ -60,7 +60,7 @@ namespace Mortis
 	}
 
 	class SingletonThreadPool : public Singleton<SingletonThreadPool>, public BaseThreadPool
-	{
+		{
 		friend class Singleton<SingletonThreadPool>;
 	protected:
 		using BaseThreadPool::BaseThreadPool;
@@ -77,7 +77,7 @@ namespace Mortis
 
 		template<typename F, typename... Args>
 			requires std::invocable<F, Args...>
-		auto Async(std::size_t taskCount,const F& f,const Args& ...args) {
+		auto Async(std::size_t taskCount, const F& f, const Args& ...args) {
 			using return_type = typename std::invoke_result<F, Args...>::type;
 			std::vector<std::future<return_type>> results;
 			results.reserve(taskCount);
@@ -87,4 +87,6 @@ namespace Mortis
 			return results;
 		}
 	}
-};
+}
+
+
