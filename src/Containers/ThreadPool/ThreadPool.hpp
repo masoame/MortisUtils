@@ -8,6 +8,17 @@ namespace Mortis
 	* 适配C++20，并增加stop_source参数，用于控制线程池的关闭。
 	* 使用std::jthread替代原来的std::thread，支持stop_token参数，用于控制线程的关闭。
 	*/
+<<<<<<<<< Temporary merge branch 1
+	class ThreadPool {
+
+	public:
+		explicit ThreadPool(size_t threads);
+		~ThreadPool();
+
+		template<class F, class... Args>
+		auto enqueue(F&& f, Args&&... args)
+			-> std::future<typename std::invoke_result<F, Args...>::type>;
+=========
 	class BaseThreadPool {
 
 	public:
@@ -22,6 +33,7 @@ namespace Mortis
 		template<class Task>
 			requires BC::is_packaged_task_v<Task> && (not std::is_reference_v<Task>)
 		auto enqueue(const std::shared_ptr<Task>& task);
+>>>>>>>>> Temporary merge branch 2
 	private:
 
 		// need to keep track of threads so we can join them
@@ -50,6 +62,11 @@ namespace Mortis
 		condition.notify_one();
 		return res;
 	}
+<<<<<<<<< Temporary merge branch 1
+}
+
+
+=========
 
 	template<class F, class... Args>
 		requires std::invocable<F, Args...>
@@ -92,3 +109,4 @@ namespace Mortis
 		}
 	}
 };
+>>>>>>>>> Temporary merge branch 2
