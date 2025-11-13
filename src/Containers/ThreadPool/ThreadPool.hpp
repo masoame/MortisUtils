@@ -24,14 +24,10 @@ namespace Mortis
 		auto enqueue(const std::shared_ptr<Task>& task);
 	private:
 
-		// need to keep track of threads so we can join them
 		std::vector< std::jthread > workers{};
-		// the task queue
 		std::queue< std::function<void()>> tasks{};
-		// synchronization
 		std::mutex queue_mutex{};
 		std::condition_variable condition{};
-		//bool stop;
 		std::stop_source stop{};
 	};
 
