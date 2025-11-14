@@ -73,4 +73,7 @@ namespace Mortis::BT
 
 	template <typename T>
 	using extract_char_type_t = typename extract_char_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
+
+	template <typename T>
+	using derive_string_view_t = typename std::base_string_view<extract_char_type_t<T>>;
 }
