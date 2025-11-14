@@ -1,7 +1,7 @@
 #pragma once
 #include<utils.hpp>
 
-namespace Mortis::PE
+namespace Mortis::rfl
 {
 	template<typename FuncPtrType>
 	struct ReflFunc
