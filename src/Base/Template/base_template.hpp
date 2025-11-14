@@ -44,43 +44,33 @@ namespace Mortis::BT
         return get_type_positions_impl<T, Args...>();
     }
 
-	template <typename T>
-	struct string_view_type;
-
-	template <typename Traits, typename Alloc>
-	struct string_view_type<std::basic_string<char, Traits, Alloc>> {
-		using type = std::string_view;
-	};
-
-	template <>
-	struct string_view_type<const char*> {
-		using type = std::string_view;
-	};
-
-	template <>
-	struct string_view_type<std::string_view> {
-		using type = std::string_view;
-	};
-
-
-	// --- Wide Character ---
-
-	template <typename Traits, typename Alloc>
-	struct string_view_type<std::basic_string<wchar_t, Traits, Alloc>> {
-		using type = std::wstring_view;
-	};
-
-	template <>
-	struct string_view_type<const wchar_t*> {
-		using type = std::wstring_view;
-	};
-
-	template <>
-	struct string_view_type<std::wstring_view> {
-		using type = std::wstring_view;
-	};
-
+#include <type_traits>
+#include <string>
+#include <string_view>
 
 	template <typename T>
-	using string_view_type_t = typename string_view_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
+	struct extract_char_type;
+
+	template <typename CharT, typename Traits, typename Alloc>
+	struct extract_char_type<std::basic_string<CharT, Traits, Alloc>> {
+		using type = CharT;
+	};
+
+	template <typename CharT, typename Traits>
+	struct extract_char_type<std::basic_string_view<CharT, Traits>> {
+		using type = CharT;
+	};
+
+	template <typename CharT>
+	struct extract_char_type<const CharT*> {
+		using type = CharT;
+	};
+
+	template <typename CharT>
+	struct extract_char_type<CharT*> {
+		using type = CharT;
+	};
+
+	template <typename T>
+	using extract_char_type_t = typename extract_char_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
 }
