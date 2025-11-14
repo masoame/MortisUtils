@@ -1,6 +1,7 @@
 #pragma once
 #include <type_traits>
 #include <memory>
+
 namespace Mortis::BT
 {
 	template <auto F>
@@ -44,10 +45,6 @@ namespace Mortis::BT
         return get_type_positions_impl<T, Args...>();
     }
 
-#include <type_traits>
-#include <string>
-#include <string_view>
-
 	template <typename T>
 	struct extract_char_type;
 
@@ -75,5 +72,5 @@ namespace Mortis::BT
 	using extract_char_type_t = typename extract_char_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
 
 	template <typename T>
-	using derive_string_view_t = typename std::base_string_view<extract_char_type_t<T>>;
+	using derive_string_view_t = typename ::std::basic_string_view<extract_char_type_t<T>>;
 }
