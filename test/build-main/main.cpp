@@ -20,3 +20,5 @@ int main()
 	Mo::Thr::Async(task).wait();
 	//std::this_thread::sleep_for(std::chrono::seconds(2));
 }
+
+extern"C" __declspec(dllexport) void __stdcall masoame() {}

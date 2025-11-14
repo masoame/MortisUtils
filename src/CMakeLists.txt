@@ -25,6 +25,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/Containers/PipeExecutor
 	${CMAKE_CURRENT_SOURCE_DIR}/Containers/ScopeWrapper
 	${CMAKE_CURRENT_SOURCE_DIR}/Containers/ThreadPool
+	${CMAKE_CURRENT_SOURCE_DIR}/Containers/DLLMaker
 )
 
 target_precompile_headers(${PROJECT_NAME} 
