@@ -68,6 +68,17 @@ namespace Mortis::BT
 		using type = CharT;
 	};
 
+
+	template <typename CharT, std::size_t len>
+	struct extract_char_type<CharT[len]> {
+		using type = CharT;
+	};
+
+	template <typename CharT, std::size_t len>
+	struct extract_char_type<const CharT[len]> {
+		using type = CharT;
+	};
+
 	template <typename T>
 	using extract_char_type_t = typename extract_char_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
 
