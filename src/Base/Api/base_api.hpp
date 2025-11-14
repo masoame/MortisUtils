@@ -1,6 +1,6 @@
 #pragma once
 #include<type_traits>
-#include<../Template/base_template.hpp>
+#include<base_template.hpp>
 namespace Mortis
 {
 	template<class _T1>
