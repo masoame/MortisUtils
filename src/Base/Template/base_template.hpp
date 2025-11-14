@@ -43,4 +43,44 @@ namespace Mortis::BT
     constexpr auto get_type_positions(R(C::*)(Args...) const noexcept) {
         return get_type_positions_impl<T, Args...>();
     }
+
+	template <typename T>
+	struct string_view_type;
+
+	template <typename Traits, typename Alloc>
+	struct string_view_type<std::basic_string<char, Traits, Alloc>> {
+		using type = std::string_view;
+	};
+
+	template <>
+	struct string_view_type<const char*> {
+		using type = std::string_view;
+	};
+
+	template <>
+	struct string_view_type<std::string_view> {
+		using type = std::string_view;
+	};
+
+
+	// --- Wide Character ---
+
+	template <typename Traits, typename Alloc>
+	struct string_view_type<std::basic_string<wchar_t, Traits, Alloc>> {
+		using type = std::wstring_view;
+	};
+
+	template <>
+	struct string_view_type<const wchar_t*> {
+		using type = std::wstring_view;
+	};
+
+	template <>
+	struct string_view_type<std::wstring_view> {
+		using type = std::wstring_view;
+	};
+
+
+	template <typename T>
+	using string_view_type_t = typename string_view_type<std::remove_cv_t<std::remove_reference_t<T>>>::type;
 }
