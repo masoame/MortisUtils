@@ -1,7 +1,5 @@
 #pragma once
 #include<utils.hpp>
-#include<base_template.hpp>
-#include<base_concept.hpp>
 
 namespace Mortis
 {
