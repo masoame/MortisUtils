@@ -45,6 +45,7 @@ namespace Mo = ::Mortis;
 #include <base_types.hpp>
 
 #include<Singleton.hpp>
+#include<StaticHelper.hpp>
 #include<ThreadPool.hpp>
 #include<ReflFunc.hpp>
 #include<ConvertString.hpp>
