@@ -5,6 +5,7 @@ namespace Mortis
 	template<typename DLLMaker>
 	class BaseDLL : public Mortis::Singleton<DLLMaker>
 	{
+		friend Mortis::Singleton<DLLMaker>;
 	protected:
 		bool bRet = true;
 
