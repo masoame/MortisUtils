@@ -59,11 +59,7 @@ namespace Mo = ::Mortis;
 #include<Windows.h>
 #include<tlhelp32.h>
 #include<DLLMaker.hpp>
-#else
 #endif
-
-
-
 
 namespace os
 {
