@@ -22,11 +22,11 @@ namespace Mortis
 	};
 }
 
+#define MAKE_DEFAULT_DLLMAKER \
+	friend BOOL APIENTRY ::DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved);
+
 #define MAKE_EXTERN_DLL \
 	extern "C" BOOL APIENTRY ::DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved);
-
-#define MAKE_FRIEND_DLL(DLLClass) \
-	friend BOOL APIENTRY ::DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved);
 
 #define DEFAULT_MAKE_DLL(DLLClass) \
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) \
