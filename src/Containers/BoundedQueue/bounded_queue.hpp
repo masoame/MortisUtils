@@ -4,14 +4,14 @@
 namespace Mortis
 {
 	/*
-	* BoundedQueue用于实现一个有界队列，支持线程安全的入队和出队操作。内部资源都是通过智能指针管理，支持自定义的删除函数。
+	* BoundedQueue用于实现一个带锁的有界队列，支持线程安全的入队和出队操作。
 	*/
 	template<class _T>
 	class bounded_queue
 	{
 		using _Type = std::remove_reference_t<_T>;
 	public:
-		explicit bounded_queue(size_t max_size = -1) : _max_size(max_size), _is_closed(false) {}
+		explicit bounded_queue(std::size_t max_size = -1) : _max_size(max_size), _is_closed(false) {}
 
 		~bounded_queue() {
 			_is_closed = true;
