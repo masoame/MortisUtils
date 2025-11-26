@@ -2,24 +2,25 @@
 
 namespace Mortis
 {
-	template<typename DLLMaker>
-	class BaseDLL : public Mortis::Singleton<DLLMaker>
+	template<typename TDLLMaker>
+	class BaseDLL : public Mortis::Singleton<TDLLMaker>
 	{
-		friend Mortis::Singleton<DLLMaker>;
-	protected:
+		friend Mortis::Singleton<TDLLMaker>;
+	public:
 		bool bRet = true;
+	protected:
 
 		void Initialize(const HMODULE& hModule, PCONTEXT pCtx) {
-			bRet = static_cast<DLLMaker*>(this)->Initialize(hModule, pCtx);
+			bRet = static_cast<TDLLMaker*>(this)->Initialize(hModule, pCtx);
 		}
 		void Uninitialize(const HMODULE& hModule, PCONTEXT pCtx) {
-			bRet = static_cast<DLLMaker*>(this)->Uninitialize(hModule, pCtx);
+			bRet = static_cast<TDLLMaker*>(this)->Uninitialize(hModule, pCtx);
 		}
 		void Listen_Thread_Create(const HMODULE& hModule) {
-			bRet = static_cast<DLLMaker*>(this)->Listen_Thread_Create(hModule);
+			bRet = static_cast<TDLLMaker*>(this)->Listen_Thread_Create(hModule);
 		}
 		void Listen_Thread_Destroy(const HMODULE& hModule) {
-			bRet = static_cast<DLLMaker*>(this)->Listen_Thread_Destroy(hModule);
+			bRet = static_cast<TDLLMaker*>(this)->Listen_Thread_Destroy(hModule);
 		}
 	};
 }
