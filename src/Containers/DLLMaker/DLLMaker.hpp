@@ -8,7 +8,6 @@ namespace Mortis
 		friend Mortis::Singleton<TDLLMaker>;
 	public:
 		bool bRet = true;
-	protected:
 
 		void Initialize(const HMODULE& hModule, PCONTEXT pCtx) {
 			bRet = static_cast<TDLLMaker*>(this)->Initialize(hModule, pCtx);
