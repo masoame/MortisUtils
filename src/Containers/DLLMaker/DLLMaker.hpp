@@ -5,7 +5,7 @@ namespace Mortis
 	template<typename TDLLMaker>
 	class BaseDLL : public Mortis::Singleton<TDLLMaker>
 	{
-		friend Mortis::Singleton<TDLLMaker>;
+		friend class Mortis::Singleton<TDLLMaker>;
 	protected:
 		bool Initialize(const HMODULE& hModule, PCONTEXT pCtx) {
 			return static_cast<TDLLMaker*>(this)->Initialize(hModule, pCtx);
