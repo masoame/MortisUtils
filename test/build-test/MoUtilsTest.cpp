@@ -36,32 +36,31 @@ TEST_CASE("Async Function","[Mo::Thr]")
 	}() == (test_cout * run_cout));
 }
 
-TEST_CASE("Async Read Write", "[Mo::Bounded_queue]")
+TEST_CASE("Async Read Write","[Mo::Bounded_queue]")
 {
 	using namespace std::chrono_literals;
 	Mo::bounded_queue<int> bq(2000);
 
-	REQUIRE([](Mo::bounded_queue<int>& bq)->bool {
+	REQUIRE_NOTHROW([](Mo::bounded_queue<int>& bq)->bool {
 		constexpr auto produce_count = 10000;
 		constexpr auto consume_count = 10000;
 		auto producer = [&bq]() {
 			for (int i = 0; i != produce_count; ++i) {
 				bq.push(i);
 			}
-			return true;
 		};
-		auto consumer = [&bq]() -> bool {
+		auto consumer = [&bq]() {
 			for (int i = 0; i != consume_count; ++i) {
 				auto val = bq.pop_for(500ms);
 				if (val.has_value() == false) {
-					return false;
+					throw std::runtime_error("UnKnow Error!!!");
 				}
 			}
-			return true;
 		};
 		auto prod_future = Mo::Thr::Async(producer);
 		auto cons_future = Mo::Thr::Async(consumer);
-
-		return prod_future.get() && cons_future.get();
-	}(bq) == true);
+		prod_future.get();
+		cons_future.get();
+		return true;
+	}(bq));
 }
