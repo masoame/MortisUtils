@@ -20,6 +20,7 @@ namespace Mo = ::Mortis;
 #include<functional>
 
 #include<format>
+#include<print>
 #include<any>
 #include<variant>
 
