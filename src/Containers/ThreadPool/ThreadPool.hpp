@@ -2,14 +2,7 @@
 #include<Utils.hpp>
 namespace Mortis
 {
-	/*
-	* singletont_thread_pool用于实现一个单例线程池，支持线程安全的任务队列和线程管理。
-	* 参考项目来源: https://github.com/progschj/ThreadPool
-	* 适配C++20，并增加stop_source参数，用于控制线程池的关闭。
-	* 使用std::jthread替代原来的std::thread，支持stop_token参数，用于控制线程的关闭。
-	*/
 	class BaseThreadPool {
-
 	public:
 		explicit BaseThreadPool(std::size_t threads = std::thread::hardware_concurrency());
 		~BaseThreadPool();
