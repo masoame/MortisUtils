@@ -5,29 +5,16 @@
 #include<windows.h>
 namespace Mortis
 {
+	std::wstring MultiStringToWideString(UINT CodePage, std::string_view str);
+	std::string WideStringToMultiString(UINT CodePage, std::wstring_view str);
 
-	inline std::wstring MultiStringToWideString(UINT CodePage, std::string_view str)
-	{
-		std::wstring result(MultiByteToWideChar(CodePage, 0, str.data(), -1, nullptr, 0) - 1, L'\0');
-		MultiByteToWideChar(CodePage, 0, str.data(), -1, result.data(), static_cast<int>(result.size()));
-		return result;
-	}
+	std::wstring UTF8ToUTF16(std::string_view str);
+	std::wstring ANSIToUTF16(std::string_view str);
+	std::wstring GBKToUTF16(std::string_view str);
 
-	inline std::string WideStringToMultiString(UINT CodePage, std::wstring_view str)
-	{
-		std::string result(WideCharToMultiByte(CodePage, 0, str.data(), -1, nullptr, 0, NULL, NULL) - 1, '\0');
-		WideCharToMultiByte(CodePage, 0, str.data(), -1, result.data(), static_cast<int>(result.size()), NULL, NULL);
-		return result;
-	}
-
-	constexpr static auto UTF8ToUTF16 = std::bind(MultiStringToWideString, CP_UTF8, std::placeholders::_1);
-	constexpr static auto ANSIToUTF16 = std::bind(MultiStringToWideString, CP_ACP, std::placeholders::_1);
-	constexpr static auto GBKToUTF16 = std::bind(MultiStringToWideString, 936, std::placeholders::_1);
-
-	constexpr static auto UTF16ToUTF8 = std::bind(WideStringToMultiString, CP_UTF8, std::placeholders::_1);
-	constexpr static auto UTF16ToANSI = std::bind(WideStringToMultiString, CP_ACP, std::placeholders::_1);
-	constexpr static auto UTF16ToGBK = std::bind(WideStringToMultiString, 936, std::placeholders::_1);
-
+	std::string UTF16ToUTF8(std::wstring_view str);
+	std::string UTF16ToANSI(std::wstring_view str);
+	std::string UTF16ToGBK(std::wstring_view str);
 
 	template<typename CharType>
 	constexpr auto ToUpperCaseStdString(std::basic_string_view<CharType> str_view)
