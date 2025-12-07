@@ -36,7 +36,7 @@ namespace Mortis
 		std::basic_string<TChar> result;
 		result.resize(str_view.size());
 		std::ranges::transform(str_view, result.begin(),
-			[](TChar c)->CharType {
+			[](TChar c)->TChar {
 				return static_cast<TChar>(std::tolower(c));
 			});
 		return result;
