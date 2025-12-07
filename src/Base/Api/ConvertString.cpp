@@ -46,6 +46,16 @@ namespace Mortis
 		return WideStringToMultiString(936, str);
 	}
 
+	std::string UTF8ToANSI(std::string_view str)
+	{
+		return UTF16ToANSI(UTF8ToUTF16(str));
+	}
+
+	std::string ANSIToUTF8(std::string_view str)
+	{
+		return UTF16ToUTF8(ANSIToUTF16(str));
+	}
+
 }
 
 

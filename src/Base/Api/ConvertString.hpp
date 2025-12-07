@@ -16,6 +16,9 @@ namespace Mortis
 	std::string UTF16ToANSI(std::wstring_view str);
 	std::string UTF16ToGBK(std::wstring_view str);
 
+	std::string UTF8ToANSI(std::string_view str);
+	std::string ANSIToUTF8(std::string_view str);
+
 	template<typename TChar>
 	constexpr auto ToUpperCaseStdString(std::basic_string_view<TChar> str_view)
 		-> std::basic_string<TChar>
