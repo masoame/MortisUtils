@@ -61,8 +61,3 @@ namespace Mo = ::Mortis;
 #include<tlhelp32.h>
 #include<DLLMaker.hpp>
 #endif
-
-namespace os
-{
-	std::wstring GetModuleFileNameW(HMODULE module = NULL);
-}
