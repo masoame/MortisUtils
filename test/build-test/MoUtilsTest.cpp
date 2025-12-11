@@ -41,7 +41,7 @@ TEST_CASE("Async Read Write","[Mo::Bounded_queue]")
 	using namespace std::chrono_literals;
 	Mo::bounded_queue<int> bq(2000);
 
-	REQUIRE_NOTHROW([](Mo::bounded_queue<int>& bq)->bool {
+	REQUIRE_NOTHROW([](Mo::bounded_queue<int>& bq) -> bool {
 		constexpr auto produce_count = 10000;
 		constexpr auto consume_count = 10000;
 		auto producer = [&bq]() {
@@ -62,5 +62,5 @@ TEST_CASE("Async Read Write","[Mo::Bounded_queue]")
 		prod_future.get();
 		cons_future.get();
 		return true;
-	}(bq));
+	}(bq) == true);
 }
